@@ -6,8 +6,7 @@
 First, clone the repo by copying the https Url.  
 
 ```bash
-clone 
-npm run dev
+clone 'repo url'
 ```
 
 then install the dependecies / packages and run the development server:
