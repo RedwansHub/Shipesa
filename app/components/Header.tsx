@@ -19,9 +19,12 @@ import NextLink from "next/link";
 import { useMediaQuery, useTheme } from "@mui/material";
 import ThemeToggleButton from "./ThemeButton";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
+import { SafeUser } from "../lib/Types";
 
 export type HeaderProps = {
   ColorModeContext: React.Context<{ toggleColorMode: () => void }>;
+  user: string 
 };
 
 const Header = (props: HeaderProps) => {
@@ -42,18 +45,29 @@ const Header = (props: HeaderProps) => {
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
   };
+  const handleAuth = () => {
+    signOut(),
+    router.push('/');
+  };
+  const backToDashboard = () => {
+    if(props.user == 'Admin'){
+      router.push('/Admin');
+    } else {
+      router.push('/Dashboard');
+    }
+  };
 
   const tabletCheck = useMediaQuery("(min-width: 768px)");
-
+  const router = useRouter()
   return (
-    <AppBar position="static" sx={{ marginBottom: "20px" }}>
+    <AppBar position="sticky" sx={{ marginBottom: "20px" }}>
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-          <Box sx={{  width:"180px",  }}>
-            <Image src={'/Shipesa-Logo.png'} alt="Shipesa Logo" height={200} width={200}/> 
-          </Box>
-         
           
+          <div onClick={() => backToDashboard()} className="w-[180px] cursor-pointer">
+            <Image src={'/Shipesa-Logo.png'} alt="Shipesa Logo" height={200} width={200}/> 
+          </div>
+
           <Box sx={{ flexGrow: 0,paddingRight: 5, marginLeft: "auto" }}>
             <Tooltip title="Open profile settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
@@ -90,9 +104,9 @@ const Header = (props: HeaderProps) => {
                   <Typography textAlign="center">Profile</Typography>
                 </NextLink>
               </MenuItem>
-              <MenuItem onClick={() => (session ? signOut() : signIn())}>
+              <MenuItem onClick={() => handleAuth()}>
                 <Typography textAlign="center">
-                  {session ? "Logout" : "Login"}
+                  Logout
                 </Typography>
               </MenuItem>
               <MenuItem className="flex justify-between gap-2 items-center">

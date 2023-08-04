@@ -12,7 +12,7 @@ type Props = {
 const Transactions = (props: Props) => {
 
   return (
-    <div>
+    <>
         <Box sx={{ height: 600, width: '100%', borderRadius: '20px', bgcolor: props.colorMode == 'light' ? '#D0D0D0' : '#272727' }}>
             <DataGrid
                 rows={TableData.rows}
@@ -33,7 +33,7 @@ const Transactions = (props: Props) => {
                 
             />
         </Box>
-    </div>
+    </>
   )
 }
 

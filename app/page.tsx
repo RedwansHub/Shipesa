@@ -1,17 +1,20 @@
 'use client'
 
-import { useSession } from 'next-auth/react'
-
-import Dashboard from './Dashboard/page';
-import Login from './components/Login';
+import ClientSection from "./components/Landing/ClientSection"
+import Hero from "./components/Landing/Hero"
+import Navbar from "./components/Landing/Navbar"
 
 export default function Home() {
-  const { data: session } = useSession();
 
   return (
     <div className={'container'}>
-       {session && <Dashboard />}
-      {!session && <Login />}
+       {/* {session && <Dashboard />}
+      {!session && <Login />} */}
+      <Navbar />
+      <Hero />
+      {/* <div className="py-4">
+        <ClientSection />
+      </div> */}
     </div>
    )
 }

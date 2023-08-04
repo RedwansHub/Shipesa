@@ -5,14 +5,8 @@ import TransactionBottomRow from '../components/Dashboard/TransactionBottomRow'
 
 export default function Dashboard () {
     return (
-        <div className='' >
-            <Box>
-                <Grid container gap={4} marginTop={2}>
-                    <DataRibbon />
-                    <TransactionsPerDay />
-                </Grid>
-                {/* <TransactionBottomRow /> */}
-            </Box>
+        <div className='usercontainer' >
+            <h2>User Dashboard</h2>
         </div>
     )
 }

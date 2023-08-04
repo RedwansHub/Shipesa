@@ -9,11 +9,11 @@ type Props = {
 
 const UsersTable = (props: Props) => {
   return (
-    <div>
+    <>
         <Typography>Users</Typography>
         <Box sx={{ height: 600, width: '100%', borderRadius: '20px', bgcolor: props.colorMode == 'light' ? '#D0D0D0' : '#272727' }}>
         </Box>
-    </div>
+    </>
   )
 }
 

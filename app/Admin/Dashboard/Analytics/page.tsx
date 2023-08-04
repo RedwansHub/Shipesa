@@ -34,13 +34,6 @@ interface TabPanelProps {
       </div>
     );
   }
-  
-  function a11yProps(index: number) {
-    return {
-      id: `simple-tab-${index}`,
-      'aria-controls': `simple-tabpanel-${index}`,
-    };
-  }
 
 export default function Analytics() {
     const [value, setValue] = useState(0);
@@ -51,13 +44,13 @@ export default function Analytics() {
         setValue(newValue);
     };
     return (
-        <div>
+        <>
             <h2 className="font-bold text-2xl py-4">Analytics</h2>
             <Box sx={{  }}>
                 <Tabs value={value} onChange={handleChange} aria-label="basic tabs example">
-                    <Tab label="Transactions" {...a11yProps(0)} />
-                    <Tab label="Users" {...a11yProps(1)} />
-                    <Tab label="Extra" {...a11yProps(2)} />
+                    <Tab label="Transactions" value={0}/>
+                    <Tab label="Users"  value={1}/>
+                    <Tab label="Extra"  value={2}/>
                 </Tabs>
             </Box>
             <CustomTabPanel value={value} index={0}>
@@ -69,6 +62,6 @@ export default function Analytics() {
             <CustomTabPanel value={value} index={2}>
                 Item Three
             </CustomTabPanel>
-        </div>
+        </>
     )
 }

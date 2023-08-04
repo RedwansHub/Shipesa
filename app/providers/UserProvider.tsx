@@ -3,19 +3,21 @@
 import React from 'react'
 import { SessionProvider, useSession } from 'next-auth/react'
 import SideMenu from '../components/SideMenu/SideMenu'
+import { SafeUser } from '../lib/Types'
 
 
 type Props = {
-    children: React.ReactNode
+    children: React.ReactNode,
+    user: SafeUser | null
 }
 
-const UserProvider = ({children}: Props) => {
+const UserProvider = ({children, user}: Props) => {
     const { data: session } = useSession();
     
   return (
    
-      <div className='layout'>
-        {session && <SideMenu /> }
+      <div className= { !session ? 'layout' : 'userlayout'}>
+          {session && <SideMenu User={user} /> }
           {children}
       </div>
    
